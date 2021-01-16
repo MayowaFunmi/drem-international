@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Sign Up</title>
+</head>
+<body>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+           {% for field in form %}
+            <div id="label">
+                {{ field.label }}:
+            </div>
+            <div id="field">
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">
+            Sign Up
+        </button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Award Profile</h2>
+    <div>
+        Title: {{ title }}<br>
+        Name: {{ name }}<br>
+        Award: {{ award_title }}<br>
+        Photo 1: <img src="{{ award_image_1 }}"><br>
+        Photo 2: <img src="{{ award_image_2 }}"><br>
+        Brief Profile: {{ brief_profile }}<br>
+    </div>
+
+    <a href="{% url 'awards:list_awards' %}">All Awards</a>
+</body>
+</html>

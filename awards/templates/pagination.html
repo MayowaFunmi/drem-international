@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="pagination">
+        <span class="step-links">
+            {% if awards.has_previous %}
+                <a href="?page={{ awards.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ awards.number }} of {{ awards.paginator.num_pages }}.
+            </span>
+            {% if awards.has_next %}
+                <a href="?page={{ awards.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="container-fluid">
+        <div class="card" style="background-color: #FFD700;">
+            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px;">
+                <img id="drem_logo" src="{% static 'img/drem_logo.jpg' %}">
+                DESTINY RESCUE MISSION INTERNATIONAL
+                <p style="font-size: 10px; margin: 5px; padding: 0px;">...Who so run to Christ shall be saved!!!</p>
+            </div>
+        </div>
+    </header>
+    <!-- End Header Section -->
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Awards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Testimony Arena</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Prayer Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quiz</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hi! {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+            <h3 id="clock"></h3>
+
+        </div>
+    </nav>
+    <!-- End Navigation Bar -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div style="background-color: #806f45; color: white;">
+                    <h2>Isaiah 61:1-7</h2>
+                    <p>
+                        1. The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
+                        2 To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
+                        3 To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified.<br>
+                        4 ¶And they shall build the old wastes, they shall raise up the former desolations, and they shall repair the waste cities, the desolations of many generations.<br>
+                        5 And strangers shall stand and feed your flocks, and the sons of the alien shall be your plowmen and your vinedressers.<br>
+                        6 But ye shall be named the Priests of the Lord: men shall call you the Ministers of our God: ye shall eat the riches of the Gentiles, and in their glory shall ye boast yourselves.<br>
+                        7 ¶For your shame ye shall have double; and for confusion they shall rejoice in their portion: therefore in their land they shall possess the double: everlasting joy shall be unto them.<br>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pictures Slide Show Carousel -->
+            <div class="col-sm-8">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img style="width: 200px; height: 300px;" src="{% static 'img/drem_handbill.jpg' %}" class="d-block w-100" alt="DREM HandBill">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="width: 200px; height: 300px;" src="{% static 'img/ocpos_handbill.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="width: 200px; height: 300px;" src="{% static 'img/year_2021.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="width: 200px; height: 300px;" src="{% static 'img/merry_christmass.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!-- End Pictures Slide Show Carousel -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

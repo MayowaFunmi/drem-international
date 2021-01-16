@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+           {% for field in form %}
+            <div id="label">
+                {{ field.label }}:
+            </div>
+            <div id="field">
+                {{ field }}
+                {{ field.help_text }}
+            </div>
+        {% endfor %}
+        <button class="btn btn-success" type="submit">
+            Send Message
+        </button>
+        </form>
+    </div>
+</body>
+</html>

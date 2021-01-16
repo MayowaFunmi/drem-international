@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        {% for award in awards %}
+            Title: {{ award.title }}<br>
+            Name: {{ award.name }}<br>
+            Award: {{ award.award_title }}<br>
+            Photo 1: <img src="{{ award.award_image_1.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+            Photo 2: <img src="{{ award.award_image_2.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+            Brief Profile: {{ award.brief_profile }}<br>
+        {% endfor %}
+    </div>
+
+    {% include "pagination.html" %}
+</body>
+</html>

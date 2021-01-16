@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POST LIST</title>
+</head>
+<body>
+    <div>
+        {% for post in posts %}
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">{{ post.title }}</span> &middot;
+                    <span class="text-muted">by @{{ post.author }} |
+                    {{ post.date }}</span>
+                </div>
+
+                <div class="card-body">
+                    <p>{{ post.body }}</p>
+                    <a href="{% url 'blog/post_edit' post.pk %}">Edit</a> | <a href="{% url 'blog/post_delete' post.pk %}">Delete</a>
+                </div>
+
+                <div class="card-footer">
+                    {% for comment in post.comments.all %}
+                        <p>
+                            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
+                                {{ comment }}
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+</body>
+</html>
