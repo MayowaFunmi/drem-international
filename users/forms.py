@@ -24,7 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Surname'}),
             'middle_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Middle Name'}),
             'church_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter The Name Of Your Church'}),
-            'marital_status': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose Your Marital Status'}),
+            #'marital_status': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose Your Marital Status'}),
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Address'}),
             'favourite_bible_verse': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'What is your favourite bible passage?'}),
             'about_me': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell Us Something About Yourself (not more than 300 words)...'}),

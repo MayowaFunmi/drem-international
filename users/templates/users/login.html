@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+{% block title %}Login Form{% endblock title %}
+
+
+{% block content %}
+    <div>
+        <h3>Please fill the form below to login.</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div class='error'>{{form.errors.username}}</div>
+                <div class='error'>{{form.errors.password}}</div>
+
+                {% for field in form %}
+                    <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
+                        {{ field.label }}:
+                    </div>
+
+                    <div class="form-control">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button class="btn btn-success" type="submit">
+                Login
+            </button>
+        </form>
+    </div>
+{% endblock %}

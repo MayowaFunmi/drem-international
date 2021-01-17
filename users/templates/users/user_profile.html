@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Profile Details{% endblock title %}
+
+{% block content %}
+    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}...</h2>
+    <div>
+        <p style="text-align: center">Below Are Your Registration Details:</p>
+        <p>
+            <strong>Username:</strong> {{ user.username }}<br>
+            <strong>Email:</strong> {{ user.email }}<br>
+            <strong>First Name:</strong> {{ user.first_name }}<br>
+            <strong>Surname:</strong> {{ user.last_name }}<br>
+            <strong>Middle Name:</strong> {{ user.middle_name }}<br>
+            <strong>Are You Born Again?:</strong> {{ user.born_again }}<br>
+            <strong>The Name Of Your Church:</strong> {{ user.church_name }}<br>
+            <strong>Marital Status:</strong> {{ user.marital_status }}<br>
+            <strong>Address:</strong> {{ user.address }}<br>
+            <strong>Phone Number:</strong> {{ user.phone_number }}<br>
+            <strong>Date Of Birth:</strong> {{ user.date_of_birth }}<br>
+            <strong>Your Favourite Bible Text:</strong> {{ user.favourite_bible_verse }}<br>
+            <strong>About You:</strong> {{ user.about_me }}<br>
+            Photo: <img src="{{ user.photo.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+        </p>
+
+    </div>
+{% endblock %}
