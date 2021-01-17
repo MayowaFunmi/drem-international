@@ -60,20 +60,20 @@
                                 Hi! {{ user.username }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'users:signup' %}">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
                         </li>
                     {% endif %}
 
@@ -156,7 +156,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="copyright">
-                    <p>Copyright © <script>
+                    <p style="text-align: center;">Copyright © <script>
                         var CurrentYear = new Date().getFullYear()
                         document.write(CurrentYear)
                         </script>.<br>

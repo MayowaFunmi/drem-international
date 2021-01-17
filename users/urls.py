@@ -9,5 +9,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('testimony/', views.testimony, name='testimony'),
     path('prayer_request/', views.prayer_request, name='prayer_request'),
+    path('user_profile/', views.user_profile, name='user_profile'),
     path('base/', views.base),
 ]

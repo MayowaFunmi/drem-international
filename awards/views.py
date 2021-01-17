@@ -35,6 +35,8 @@ def award_view(request):
         form = AwardForm()
     return render(request, 'awards/biography_form.html', {'form': form})
 
+
+@login_required
 def award_list(request):
     all_awards = Awards.objects.all()
     paginator = Paginator(all_awards, 1)
