@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic.base import View
-from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm
+from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm
 
 
 def base(request):
@@ -75,16 +75,46 @@ def contact_us(request):
 
 
 # testimony form
-
+@login_required
 def testimony(request):
+    user = request.user
     if request.method == 'POST':
         form = TestimonyForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=True)
+            myform = form.save(commit=False)
+            myform.user = request.user
+            myform.save()
 
-            return render(request, 'users/testimony_detail.html')
+            context = {
+                'user': request.user.username,
+                'testimony': form.cleaned_data['testimony']
+            }
+
+            return render(request, 'users/testimony_detail.html', context)
     else:
         form = TestimonyForm()
+    return render(request, 'users/testimony_form.html', {'form': form, 'user': user})
 
-    return render(request, 'users/testimony_form.html', {'form': form})
+
+# prayer request form
+@login_required
+def prayer_request(request):
+    user = request.user
+    if request.method == 'POST':
+        form = PrayerRequestForm(request.POST)
+
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.user = request.user
+            myform.save()
+
+            context = {
+                'user': request.user.username,
+                'prayer_points': form.cleaned_data['prayer_points']
+            }
+
+            return render(request, 'users/prayer_request_detail.html', context)
+    else:
+        form = TestimonyForm()
+    return render(request, 'users/prayer_request_form.html', {'form': form, 'user': user})

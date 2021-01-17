@@ -9,11 +9,11 @@
 <body>
     <form method="POST" enctype="multipart/form-data">
         <h2>Hi {{ user.first_name }} {{ user.last_name }}!!!</h2>
-        <h3>We are glad to know that God has done something great in your life through this ministry.</h3>
-        <h3>Please fill the form below to let us know about your testimony</h3>
+        <h3>Do you have any prayer request?</h3>
+        <h3>Please fill the form below to submit your prayer request</h3>
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit">Share Your Testimony</button>
+        <button type="submit">Submit Prayer Request</button>
     </form>
     <p>Remain blessed in Jesus Name</p>
 </body>

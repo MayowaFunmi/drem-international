@@ -8,5 +8,6 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('testimony/', views.testimony, name='testimony'),
+    path('prayer_request/', views.prayer_request, name='prayer_request'),
     path('base/', views.base),
 ]

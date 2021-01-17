@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -5,6 +6,7 @@ from .forms import AwardForm
 from .models import Awards
 
 
+@login_required
 def award_view(request):
     if request.method == 'POST':
         form = AwardForm(data=request.POST, files=request.FILES)
