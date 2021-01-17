@@ -9,14 +9,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>Title</title>
+
+    <!-- reference your installed Font Awesome Free package's files here -->
+    <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+    <title>{% block title %}Title{% endblock title %}</title>
 </head>
 <body>
     <!-- Header Section -->
     <header class="container-fluid">
         <div class="card" style="background-color: #FFD700;">
-            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px;">
+            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px; text-shadow: 2px 2px;">
                 <img id="drem_logo" src="{% static 'img/drem_logo.jpg' %}">
                 DESTINY RESCUE MISSION INTERNATIONAL
                 <p style="font-size: 10px; margin: 5px; padding: 0px;">...Who so run to Christ shall be saved!!!</p>
@@ -33,7 +38,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+                <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Blog</a>
                     </li>
@@ -65,7 +70,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="{% url 'users:signup' %}">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Login</a>
@@ -82,23 +87,31 @@
 
     <div class="container">
         <div class="row">
+            <!-- Column 4 Section Starts -->
             <div class="col-sm-4">
                 <div style="background-color: #806f45; color: white;">
-                    <h2>Isaiah 61:1-7</h2>
+                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Foundational Scriptures</h2>
                     <p>
-                        1. The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
-                        2 To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
-                        3 To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified.<br>
-                        4 ¶And they shall build the old wastes, they shall raise up the former desolations, and they shall repair the waste cities, the desolations of many generations.<br>
-                        5 And strangers shall stand and feed your flocks, and the sons of the alien shall be your plowmen and your vinedressers.<br>
-                        6 But ye shall be named the Priests of the Lord: men shall call you the Ministers of our God: ye shall eat the riches of the Gentiles, and in their glory shall ye boast yourselves.<br>
-                        7 ¶For your shame ye shall have double; and for confusion they shall rejoice in their portion: therefore in their land they shall possess the double: everlasting joy shall be unto them.<br>
+                        ...The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
+                        To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
+                        To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified...<br>
+                    </p>
+                    <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
+                        Isaiah 61:1-7, Luke 4:18-19
+                    </p>
+                    <p>
+                        For whosoever shall call upon the name of the Lord shall be saved...<br>
+                    </p>
+                    <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
+                        Romans 10:13
                     </p>
                 </div>
             </div>
+            <!-- Column 4 Section Ends -->
 
-            <!-- Pictures Slide Show Carousel -->
+            <!-- Column 8 Section Starts -->
             <div class="col-sm-8">
+                <!-- Pictures Slide Show Carousel Starts -->
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
@@ -128,10 +141,41 @@
                         <span class="visually-hidden">Next</span>
                     </a>
                 </div>
+                <!-- Pictures Slide Show Carousel Ends -->
+
+                {% block content %}
+
+                {% endblock %}
             </div>
-            <!-- End Pictures Slide Show Carousel -->
+            <!-- Column 8 Section Starts -->
         </div>
     </div>
+
+    <!-- Footer Section Starts-->
+    <footer class="container-fluid" style="background-color: #52514f; color: white;">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="copyright">
+                    <p>Copyright © <script>
+                        var CurrentYear = new Date().getFullYear()
+                        document.write(CurrentYear)
+                        </script>.<br>
+                        Designed by Akinade Mayowa Emmanuel<br>
+                        All Rights Reserved
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ul style="list-style-type: none; padding: 0; margin: 0; display: inline-flex;">
+                    <li><a class="fab fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
+                    <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
+                    <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
+                    <li><a class="fa fa-vimeo" href=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section Ends -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="{% static 'js/app.js' %}"></script>

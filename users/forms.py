@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 
-from .models import ContactUs, Testimony
+from .models import ContactUs, Testimony, PrayerRequest
 
 User = get_user_model()
 
@@ -17,8 +17,17 @@ class CustomUserCreationForm(UserCreationForm):
             'marital_status', 'address', 'phone_number', 'date_of_birth', 'photo', 'favourite_bible_verse', 'about_me'
         )
         widgets = {
-            'password': forms.PasswordInput(),
-            'email': forms.EmailInput(),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Password'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Email'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Username'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your First Name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Surname'}),
+            'middle_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Middle Name'}),
+            'church_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter The Name Of Your Church'}),
+            'marital_status': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose Your Marital Status'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Address'}),
+            'favourite_bible_verse': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'What is your favourite bible passage?'}),
+            'about_me': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell Us Something About Yourself (not more than 300 words)...'}),
         }
 
 
@@ -45,4 +54,11 @@ class LoginForm(forms.Form):
 class TestimonyForm(forms.ModelForm):
     class Meta:
         model = Testimony
-        fields = '__all__'
+        fields = ('testimony', )
+
+
+# Prayer request form
+class PrayerRequestForm(forms.ModelForm):
+    class Meta:
+        model = PrayerRequest
+        fields = ('prayer_points', )

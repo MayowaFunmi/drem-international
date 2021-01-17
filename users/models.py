@@ -59,4 +59,14 @@ class Testimony(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Testimony from {self.user.first_name}'
+        return f'Testimony from {self.user.username}'
+
+
+# prayer request
+class PrayerRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    prayer_points = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Prayer Request from {self.user.username}'
