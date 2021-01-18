@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'users/base.html' %}
+
+{% block title %}List of Awards{% endblock title %}
+
+{% block content %}
+    <h2>DREM Team of the year 2020 Award List</h2>
     <div>
         {% for award in awards %}
             Title: {{ award.title }}<br>
@@ -17,5 +16,5 @@
     </div>
 
     {% include "pagination.html" %}
-</body>
-</html>
+    <p>Add More Awards <a href="{% url 'awards:create_award' %}">Here</a></p>
+{% endblock %}

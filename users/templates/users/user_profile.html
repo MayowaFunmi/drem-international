@@ -23,5 +23,10 @@
             Photo: <img src="{{ user.photo.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
         </p>
 
+        <p>
+            Need To Correct Any Error?<br>
+            Update <a href="{% url 'users:update_user' %}">HERE</a>
+        </p>
+
     </div>
 {% endblock %}

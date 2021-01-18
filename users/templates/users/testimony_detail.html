@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    User: {{ user }}<br>
-    Testimony : {{ testimony }}
-</body>
-</html>
+{% extends 'users/base.html' %}
+
+{% block title %}Testimony Successful{% endblock title %}
+
+{% block content %}
+    <p>Your Testimony: {{ testimony }}</p>
+    <h2>Your Testimony Has Been Successfully Received</h2>
+{% endblock %}

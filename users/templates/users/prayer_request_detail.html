@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    User: {{ user }}<br>
-    Prayer Point : {{ prayer_points }}
-</body>
-</html>
+{% extends 'users/base.html' %}
+
+{% block title %}Prayer Request Successful{% endblock title %}
+
+{% block content %}
+    <p>Your Prayer Request: {{ prayer_points }}</p>
+    <h2>Your Prayer Request Has Been Successfully Received</h2>
+{% endblock %}

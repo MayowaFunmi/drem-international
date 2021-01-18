@@ -42,6 +42,13 @@ class ContactUsForm(forms.ModelForm):
     class Meta:
         model = ContactUs
         fields = "__all__"
+        widgets = {
+            'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Full Name'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Email'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Phone Number'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Address'}),
+            'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Type Your Message Here...'}),
+        }
 
 
 # login form
@@ -55,6 +62,10 @@ class TestimonyForm(forms.ModelForm):
     class Meta:
         model = Testimony
         fields = ('testimony', )
+        widgets = {
+            'testimony': forms.Textarea(
+                attrs={'class': 'form-control', 'placeholder': 'Type Your Testimony Here...'}),
+        }
 
 
 # Prayer request form
@@ -62,3 +73,7 @@ class PrayerRequestForm(forms.ModelForm):
     class Meta:
         model = PrayerRequest
         fields = ('prayer_points', )
+        widgets = {
+            'prayer_points': forms.Textarea(
+                attrs={'class': 'form-control', 'placeholder': 'Type Your Prayer Request Here...'}),
+        }
