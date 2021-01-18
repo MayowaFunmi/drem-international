@@ -33,7 +33,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Home</a>
+            <a class="navbar-brand" href="{% url 'users:home' %}">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,17 +43,24 @@
                         <a class="nav-link active" aria-current="page" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Awards</a>
+                        <a class="nav-link" href="{% url 'awards:list_awards' %}">Awards</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Testimony Arena</a>
+                        <a class="nav-link" href="{% url 'users:contact_us' %}">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Prayer Request</a>
+                        <a class="nav-link" href="#">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Quiz</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Spiritual Corner
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'users:testimony' %}">Testimony Arena</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:prayer_request' %}">Prayer Request</a></li>
+                                <li><a class="dropdown-item" href="#">Bible Quiz</a></li>
+                            </ul>
+                        </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -143,9 +150,16 @@
                 </div>
                 <!-- Pictures Slide Show Carousel Ends -->
 
+                <div style="background-color: #8c6f6d; color: white; border: 2px #FFD700 solid; margin-top: 5px;">
                 {% block content %}
-
+                    <div>
+                        <h2>...First words from the convener...</h2>
+                        <p>
+                            Welcome to Destiny Rescue Mission...
+                        </p>
+                    </div>
                 {% endblock %}
+                </div>
             </div>
             <!-- Column 8 Section Starts -->
         </div>
@@ -166,6 +180,15 @@
                 </div>
             </div>
             <div class="col-sm-6">
+                <p>
+                    Contact Us:<br>
+                    phone_num
+                    email
+                    facebook
+                    telegram
+                    instagram
+                    whatsapp
+                </p>
                 <ul style="list-style-type: none; padding: 0; margin: 0; display: inline-flex;">
                     <li><a class="fab fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
                     <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>

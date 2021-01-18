@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'users/base.html' %}
+
+{% block title %}Testimony Successful{% endblock title %}
+
+{% block content %}
     <h2>Award Profile</h2>
     <div>
         Title: {{ title }}<br>
@@ -16,5 +14,4 @@
     </div>
 
     <a href="{% url 'awards:list_awards' %}">All Awards</a>
-</body>
-</html>
+{% endblock %}

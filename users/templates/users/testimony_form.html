@@ -1,20 +1,32 @@
+{% extends 'users/base.html' %}
 {% load crispy_forms_tags %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data">
+{% block title %}Testimony Form{% endblock title %}
+
+
+{% block content %}
+    <div>
         <h2>Hi {{ user.first_name }} {{ user.last_name }}!!!</h2>
         <h3>We are glad to know that God has done something great in your life through this ministry.</h3>
         <h3>Please fill the form below to let us know about your testimony</h3>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Share Your Testimony</button>
-    </form>
-    <p>Remain blessed in Jesus Name</p>
-</body>
-</html>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                {% for field in form %}
+                    <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
+                        {{ field.label }}:
+                    </div>
+
+                    <div class="form-control">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button class="btn btn-success" type="submit">
+                Share Your Testimony
+            </button>
+        </form>
+        <p>Remain blessed in Jesus Name</p>
+    </div>
+{% endblock %}

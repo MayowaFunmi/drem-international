@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm
 
@@ -84,8 +85,7 @@ def user_profile(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return render(request, 'users/home.html')
-
+    return HttpResponseRedirect('/users/home/')
 
 # view for contact form
 
@@ -142,7 +142,7 @@ def prayer_request(request):
             myform.save()
 
             context = {
-                'user': request.user.username,
+                'user': request.user,
                 'prayer_points': form.cleaned_data['prayer_points']
             }
 
@@ -152,22 +152,15 @@ def prayer_request(request):
     return render(request, 'users/prayer_request_form.html', {'form': form, 'user': user})
 
 
+# update user profile
 
-'''
-context = {
-            'username': request.user.username,
-            'email': request.user.email,
-            'first_name': request.user.first_name,
-            'last_name': request.user.last_name,
-            'middle_name': request.user.middle_name,
-            'born_again': request.user.born_again,
-            'church_name': request.user.church_name,
-            'marital_status': request.user.marital_status,
-            'address': request.user.address,
-            'phone_number': request.user.phone_number,
-            'date_of_birth': request.user.date_of_birth,
-            'favourite_bible_verse': request.user.favourite_bible_verse,
-            'about_me': request.user.about_me,
-            'photo': fs.url(photo_filename),
-        }
-'''
+@login_required
+def update_user(request):
+    obj = get_object_or_404(User, id=request.user.id)
+    form = CustomUserCreationForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save(commit=True)
+        user = User.objects.get(username=request.user.username)
+        return render(request, 'users/user_profile.html', {'user': user})
+
+    return render(request, 'users/update_user_profile.html', {'form': form})

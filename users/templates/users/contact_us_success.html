@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Your message was sent successfully</h2>
-</body>
-</html>
+{% extends 'users/base.html' %}
+
+{% block title %}Contact Us Successful{% endblock title %}
+
+{% block content %}
+    <h2>
+        Thank You For Contacting Us. <br>
+        Your Message Has Been Successfully Received.<br>
+        We'll Get Back To You Once It Has Been Reviewed.
+    </h2>
+{% endblock %}
