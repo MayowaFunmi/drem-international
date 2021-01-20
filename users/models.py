@@ -1,10 +1,22 @@
+import random
+import string
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
 # Create your models here.
+
+def random_code(digit=7, letter=3):
+    sample_str = ''.join((random.choice(string.digits) for i in range(digit)))
+    sample_str += ''.join((random.choice(string.ascii_uppercase) for i in range(letter)))
+
+    sample_list = list(sample_str)
+    final_string = ''.join(sample_list)
+    return final_string
+
+
 class CustomUser(AbstractUser):
+    code_number = models.CharField(default=random_code, max_length=10)
     GENDER = [
         ('M', 'Male'),
         ('F', 'Female'),

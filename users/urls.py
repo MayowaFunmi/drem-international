@@ -4,7 +4,9 @@ app_name = 'users'
 
 urlpatterns = [
     path('signup/', views.UserSignUpView.as_view(), name='signup'),
+    path('admin_signup/', views.AdminSignUpView.as_view(), name='admin_signup'),
     path('contact_us/', views.contact_us, name='contact_us'),
+    path('admin_login/', views.admin_user_login, name='admin_login'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('testimony/', views.testimony, name='testimony'),

@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Admin Sign Up Successful{% endblock title %}
+
+{% block content %}
+    <h2>Thank You, {{ first_name }} {{ last_name }}.<br>
+        You Have Successfully Registered</h2>
+    <div>
+        Below Are Your Registration Details:
+        <p>
+            Username: {{ username }}<br>
+            Email: {{ email }}<br>
+            First Name: {{ first_name }}<br>
+            Surname: {{ last_name }}<br>
+            Middle Name: {{ middle_name }}<br>
+            Are You Born Again?: {{ born_again }}<br>
+            The Name Of Your Church: {{ church_name }}<br>
+            Marital Status: {{ marital_status }}<br>
+            Address: {{ address }}<br>
+            Phone Number: {{ phone_number }}<br>
+            Date Of Birth: {{ date_of_birth }}<br>
+            Your Favourite Bible Text: {{ favourite_bible_verse }}<br>
+            About You: {{ about_me }}<br>
+            Photo: <img src="{{ photo }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+        </p>
+    </div>
+    <p>Proceed To <a href="{% url 'users:admin_login' %}">Login</a></p>
+    <h2>Contact the owner to ask for your login code</h2>
+{% endblock %}
