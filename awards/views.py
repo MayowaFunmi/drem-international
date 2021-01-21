@@ -4,9 +4,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from .forms import AwardForm
 from .models import Awards
+from users.decorators import unauthorised_user
 
 
 @login_required
+@unauthorised_user
 def award_view(request):
     if request.method == 'POST':
         form = AwardForm(data=request.POST, files=request.FILES)
@@ -43,3 +45,7 @@ def award_list(request):
     page = request.GET.get('page')
     awards = paginator.get_page(page)
     return render(request, 'awards/awards_list.html', {'awards': awards})
+
+
+
+#@allowed_users(allowed_roles=['admin_group'])
