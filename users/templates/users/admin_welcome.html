@@ -6,4 +6,5 @@
 
 {% block content %}
     <h2>You are logged in as an admin</h2>
+    <a class="btn btn-primary" href="{% url 'users:list_users' %}" role="button">View List Of Users</a>
 {% endblock %}

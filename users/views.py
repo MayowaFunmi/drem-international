@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
+
+from .decorators import unauthorised_user
 from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm, AdminLoginForm
 
 User = get_user_model()
@@ -245,3 +247,34 @@ def update_user(request):
         return render(request, 'users/user_profile.html', {'user': user})
 
     return render(request, 'users/update_user_profile.html', {'form': form})
+
+
+################# SuperUser Privileges ############################################################################
+
+# list all registered users
+@login_required
+@unauthorised_user
+def list_users(request):
+    users = User.objects.all()
+    return render(request, 'users/admin/user_list.html', {'users': users})
+
+
+@login_required
+@unauthorised_user
+def user_details(request, id):
+    user = get_object_or_404(User, id=id)
+    return render(request, 'users/admin/user_details.html', {'user': user})
+
+
+def delete_user(request, id):
+    user = get_object_or_404(User, id=id)
+
+    if request.method == 'POST':
+        if request.POST.get('name') == 'Yes':
+            user.is_active = False
+            return HttpResponseRedirect('/users/list_users/')
+        else:
+            return HttpResponseRedirect('/users/list_users/')
+    return render(request, 'users/admin/delete_user.html', {'user': user})
+
+####################################################################################################################
