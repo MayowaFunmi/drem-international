@@ -13,5 +13,8 @@ urlpatterns = [
     path('prayer_request/', views.prayer_request, name='prayer_request'),
     path('user_profile/', views.user_profile, name='user_profile'),
     path('update_user/', views.update_user, name='update_user'),
+    path('list_users/', views.list_users, name='list_users'),
+    path('user_details/<int:id>/', views.user_details, name='user_details'),
+    path('delete_user/<int:id>/', views.delete_user, name='delete_user'),
     path('home/', views.base, name='home'),
 ]

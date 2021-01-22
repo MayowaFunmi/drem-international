@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Sign Up Successful{% endblock title %}
+
+{% block content %}
+    <div>
+        <h2>Number Of Registered Users:{{ users.count }}</h2>
+    </div>
+    <div>
+        {% for user in users %}
+            <a href="{% url 'users:user_details' user.id %}">{{ user }}</a><br>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Sign Up Successful{% endblock title %}
+
+{% block content %}
+    <h2>Below is the registration details of {{ user.first_name }} {{ user.last_name }}:</h2>
+    <div>
+        Username: {{ user.username }}<br>
+        Email: {{ user.email }}<br>
+        First Name: {{ user.first_name }}<br>
+        Last Name: {{ user.last_name }}<br>
+        Middle Name: {{ user.middle_name }}<br>
+        Born Again?: {{ user.born_again }}<br>
+        Church Name: {{ user.church_name }}<br>
+        Marital Status: {{ user.marital_status }}<br>
+        Address: {{ user.address }}<br>
+        Phone Number: {{ user.phone_number }}<br>
+        Date Of Birth: {{ user.date_of_birth }}<br>
+        Favourite Bible Verse: {{ user.favourite_bible_verse }}<br>
+        Something About User: {{ user.about_me }}<br>
+        Photo: <img src="{{ user.photo.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+    </div>
+    <button style="background-color: red; color: white;"><a href="{% url 'users:delete_user' user.pk %}">Delete</a></button>
+{% endblock %}
