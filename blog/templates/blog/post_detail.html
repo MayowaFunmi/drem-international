@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'users/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Blog Post Detail{% endblock title %}
+
+{% block blog_content %}
     <div class="post-entry">
         <h2>{{ object.title }}</h2>
         <p>by {{ object.author }} | {{ object.date }}</p>
@@ -12,7 +12,6 @@
     </div>
 
     <p><a href="{% url 'blog:post_edit' post.pk %}">Edit</a> |
-        <a href="{% url 'post_delete' post.pk %}">Delete</a></p>
-    <p>Back to <a href="{% url 'post_list' %}">All Posts</a>.</p>
-</body>
-</html>
+        <a href="{% url 'blog:post_delete' post.pk %}">Delete</a></p>
+    <p>Back to <a href="{% url 'blog:post_list' %}">All Posts</a>.</p>
+{% endblock blog_content %}

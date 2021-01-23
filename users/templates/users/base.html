@@ -40,7 +40,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Blog</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'blog:post_list' %}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'awards:list_awards' %}">Awards</a>
@@ -61,7 +61,7 @@
                                 <li><a class="dropdown-item" href="#">Bible Quiz</a></li>
                             </ul>
                         </li>
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and not user.is_staff %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Hi! {{ user.username }}
@@ -69,6 +69,20 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+                        </li>
+                    {% elif user.is_authenticated and user.is_staff %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin Corner
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:list_users' %}">View User</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
@@ -102,10 +116,21 @@
     <!-- End Navigation Bar -->
 
     <div class="container">
+        {% block blog_content %}
         <div class="row">
             <!-- Column 4 Section Starts -->
-            <div class="col-sm-4">
-                <div style="background-color: #806f45; color: white;">
+            <div class="col-sm-4" style="background-color: #806f45; color: white;">
+                <div>
+                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Vision</h2>
+                    <p>...Raising destiny and purpose fulfilled generation and purely sanctified youths for Christ even in this insane society...</p>
+                </div>
+
+                <div>
+                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Mission</h2>
+                    <p>...To open the spiritual instinct of youths to some tactics of satan concerning destiny hindering factors through sound teachings of God's word, putting into practice and rigorous/fervent prayers...</p>
+                </div>
+
+                <div>
                     <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Foundational Scriptures</h2>
                     <p>
                         ...The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
@@ -164,7 +189,19 @@
                     <div>
                         <h2>...First words from the convener...</h2>
                         <p>
-                            Welcome to Destiny Rescue Mission...
+                            Destiny Rescue Mission Int'l (DREM) is a ministry committed to setting captives free. (ISAIAH 61:1-7, LUKE 4:18-19).<br>
+                            One faithful afternoon while on my way to campus ( Christ Apostolic Church Theological Seminary, Lagos State), God gave me the name while on motorbike.
+                            I received the calling to be on mission for Christ, to evangelise and groom youths & young adults alike, far back 6 to 7 years ago but was more glaring in the year 2015.<br>
+                            It all started with Facebook page and group, posting of articles by God's grace.
+                            Later, God gave directive to start weekly devotionals tagged: PERFECT LAW OF LIBERTY.
+                            We received divine instructions to start impacting, grooming & counselling youths via WhatsApp group, which started in 2018 and its tagged: DESTINY DISCOVERY AND COUNSELLING FORUM-DEDACOFOR. And since then, God has really been helping us to go out on outreach to motherless homes, Rehabilitation centres etc.<br>
+                            There are now 3 basic programs we are known with as a ministry according to the measure of grace received.
+                            <ol>
+                                <li>OUTREACH (to either hospital, rehabilitation centre, prison or motherless home every EASTER MONDAY of the year).</li>
+                                <li>BETHESDA EXPERIENCE (Every October 1st).</li>
+                                <li>OPERATION CARE for the POORS ON the STREET-OCPOS (Every boxing day, December 26th).</li>
+                            </ol>
+                            &#169 EVANG. O.D.A ELIJAH
                         </p>
                     </div>
                 {% endblock %}
@@ -172,6 +209,7 @@
             </div>
             <!-- Column 8 Section Starts -->
         </div>
+        {% endblock blog_content %}
     </div>
 
     <!-- Footer Section Starts-->

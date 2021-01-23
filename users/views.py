@@ -265,13 +265,14 @@ def user_details(request, id):
     user = get_object_or_404(User, id=id)
     return render(request, 'users/admin/user_details.html', {'user': user})
 
-
+@login_required
+@unauthorised_user
 def delete_user(request, id):
     user = get_object_or_404(User, id=id)
 
     if request.method == 'POST':
-        if request.POST.get('name') == 'Yes':
-            user.is_active = False
+        if request.POST.get('yes') == 'Yes':
+            user.delete()
             return HttpResponseRedirect('/users/list_users/')
         else:
             return HttpResponseRedirect('/users/list_users/')
