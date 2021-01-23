@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
     address = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
     date_of_birth = models.DateField(null=True, blank=True, help_text="Enter Date In The Format YYYY-MM-DD")
-    photo = models.ImageField(upload_to='profile_pics/%Y/%m/%d/')
+    photo = models.ImageField(upload_to='profile_pics/%Y/%m/%d/', null=True, blank=True)
     favourite_bible_verse = models.TextField(max_length=300, help_text='Not more than 300 words including chapter and verse')
     about_me = models.TextField(max_length=300, help_text='Write something about yourself, not more than 300 words')
     created_date = models.DateTimeField(auto_now_add=True)

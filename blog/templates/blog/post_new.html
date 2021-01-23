@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>New post</h1>
+{% extends 'users/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}New blog post{% endblock title %}
+
+{% block blog_content %}
+    <h1>New blog post</h1>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button class="btn btn-success ml-2" type="submit">Post</button>
     </form>
-</body>
-</html>
+{% endblock blog_content %}
