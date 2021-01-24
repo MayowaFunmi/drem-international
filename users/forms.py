@@ -50,13 +50,6 @@ class ContactUsForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Type Your Message Here...'}),
         }
 
-# admin login form
-
-
-class AdminLoginForm(forms.Form):
-    username = forms.CharField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
-    registration_number = forms.CharField(widget=forms.PasswordInput, required=True)
 
 # login form
 class LoginForm(forms.Form):

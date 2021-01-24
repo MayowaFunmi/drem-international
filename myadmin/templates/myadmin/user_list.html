@@ -8,7 +8,7 @@
     </div>
     <div>
         {% for user in users %}
-            <a href="{% url 'users:user_details' user.id %}">{{ user }}</a><br>
+            <a href="{% url 'myadmin:user_details' user.id %}">{{ user }}</a><br>
         {% endfor %}
     </div>
 
