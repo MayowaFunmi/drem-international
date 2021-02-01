@@ -23,6 +23,8 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('blog/', include('blog.urls', namespace='blog')),
     path('awards/', include('awards.urls', namespace='awards')),
+    path('myadmin/', include('myadmin.urls', namespace='myadmin')),
+
 ]
 
 if settings.DEBUG:

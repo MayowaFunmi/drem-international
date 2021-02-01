@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Direct Messages Details{% endblock title %}
+
+{% block content %}
+    <h2>Message details from {{ message.full_name }}:</h2>
+    <div>
+        Email: {{ message.email }}<br>
+        Address: {{ message.address }}<br>
+        Phone Number: {{ message.phone_number }}<br>
+        Email: {{ message.email }}<br>
+        Message Content: {{ message.message }}<br>
+    </div>
+{% endblock %}
