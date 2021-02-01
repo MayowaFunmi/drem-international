@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from .forms import AwardForm
 from .models import Awards
 from users.decorators import unauthorised_user
@@ -47,5 +48,15 @@ def award_list(request):
     return render(request, 'awards/awards_list.html', {'awards': awards})
 
 
+@login_required
+@unauthorised_user
+def delete_award(request, id):
+    award = get_object_or_404(Awards, id=id)
 
-#@allowed_users(allowed_roles=['admin_group'])
+    if request.method == 'POST':
+        if request.POST.get('yes') == 'Yes':
+            award.delete()
+            return HttpResponseRedirect('/awards/list_awards/')
+        else:
+            return HttpResponseRedirect('/awards/list_awards/')
+    return render(request, 'awards/delete_award.html', {'award': award})

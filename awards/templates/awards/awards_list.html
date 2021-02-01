@@ -17,4 +17,9 @@
 
     {% include "pagination.html" %}
     <p>Add More Awards <a href="{% url 'awards:create_award' %}">Here</a></p>
+
+    {% if user.is_superuser %}
+        <button style="background-color: red; color: white;"><a href="{% url 'awards:delete_award' award.pk %}">Delete</a></button>
+    {% endif %}
+
 {% endblock %}

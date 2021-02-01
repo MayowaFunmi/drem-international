@@ -8,6 +8,7 @@ from django.views.generic.base import View
 from users.forms import CustomUserCreationForm
 from .forms import AdminLoginForm
 from users.decorators import unauthorised_user
+from users.models import ContactUs
 
 # Create your views here.
 
@@ -75,7 +76,8 @@ class AdminSignUpView(View):
 
 
 # myadmin login user
-
+@login_required
+@unauthorised_user
 def admin_user_login(request):
     if request.method == 'POST':
         form = AdminLoginForm(request.POST)
@@ -119,3 +121,19 @@ def delete_user(request, id):
         else:
             return HttpResponseRedirect('/users/list_users/')
     return render(request, 'myadmin/delete_user.html', {'user': user})
+
+
+# view contact us messages
+
+@login_required
+@unauthorised_user
+def contact_messages(request):
+    messages = ContactUs.objects.all()
+    return render(request, 'myadmin/messages_list.html', {'messages': messages})
+
+
+@login_required
+@unauthorised_user
+def contact_details(request, id):
+    message = get_object_or_404(ContactUs, id=id)
+    return render(request, 'myadmin/messages_details.html', {'message': message})
