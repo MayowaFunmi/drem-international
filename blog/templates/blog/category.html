@@ -1,21 +1,21 @@
 {% extends 'users/base.html' %}
-
 {% load crispy_forms_tags %}
 
-{% block title %}New blog post{% endblock title %}
+{% block title %}Add a blog category{% endblock title %}
 
-{% block blog_content %}
+
+{% block content %}
     <div>
         <form method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 {% for field in form %}
                     <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
-                        {{ field.label }}
+                        {{ field.label }}:
                     </div>
 
                     <div class="form-control">
-                        {{ field }}
+                        {{ field }}:
                     </div>
                 {% endfor %}
             </div>
@@ -25,13 +25,4 @@
             </button>
         </form>
     </div>
-{% endblock blog_content %}
-
-<!--
-    <h1>New blog post</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-success ml-2" type="submit">Post</button>
-    </form>
--->
+{% endblock %}

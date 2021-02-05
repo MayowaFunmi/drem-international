@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'awards',
     'myadmin',
+    'quiz',
     'crispy_forms',
     'fontawesome-free',
 ]
