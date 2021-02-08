@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Quiz Question Added Successfully{% endblock title %}
+
+{% block content %}
+    <h2>New Question Added Successfully</h2>
+    <div>
+        <p>
+            Question: {{ question }}<br>
+            A: {{ option1 }}<br>
+            B: {{ option2 }}<br>
+            C: {{ option3 }}<br>
+            D: {{ option4 }}<br>
+            Answer: {{ answer }}<br>
+        </p>
+        <hr>
+    </div>
+    <p>Add Another Question <a href="{% url 'quiz:add_quiz' %}">Here</a></p>
+    <p>View All Question <a href="{% url 'quiz:all_questions' %}">Here</a></p>
+
+{% endblock %}

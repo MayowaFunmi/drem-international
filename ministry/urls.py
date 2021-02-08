@@ -24,6 +24,7 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('awards/', include('awards.urls', namespace='awards')),
     path('myadmin/', include('myadmin.urls', namespace='myadmin')),
+    path('quiz/', include('quiz.urls', namespace='quiz')),
 
 ]
 
