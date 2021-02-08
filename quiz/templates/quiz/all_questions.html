@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+
+{% block title %}All Quiz Questions{% endblock title %}
+
+{% block content %}
+    <h2>All Quiz Questions Available</h2>
+    <div>
+        <p>
+            {% for question in questions %}
+                Question {{ question.id }}). {{ question.question }}<br>
+                A: {{ question.option1 }}<br>
+                B: {{ question.option2 }}<br>
+                C: {{ question.option3 }}<br>
+                D: {{ question.option4 }}<br>
+                Answer: {{ question.answer }}<br>
+                <hr>
+            {% endfor %}
+        </p>
+    </div>
+    <p><a href="{% url 'quiz:add_quiz' %}">Click</a> To Add Question</p>
+{% endblock %}

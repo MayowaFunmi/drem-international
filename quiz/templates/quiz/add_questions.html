@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Quiz Form{% endblock title %}
+
+
+{% block content %}
+    <div>
+        <h3>Fill the form below to add question and answers</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                {% for field in form %}
+                    <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
+                        {{ field.label }}:
+                    </div>
+
+                    <div class="form-control">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button class="btn btn-success" type="submit">
+                Add Quiz
+            </button>
+        </form>
+    </div>
+{% endblock %}
