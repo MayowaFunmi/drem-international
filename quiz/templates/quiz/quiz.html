@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Quiz Questions{% endblock title %}
+
+{% block blog_content %}
+    <h3>Choose one option in each of the following questions.</h3>
+    <form action= "{% url 'quiz:answers' %}" method = "POST" >
+        {% for question in questions %}
+        <div class = 'question'>{{ question.question }} </div>
+        <div id= "choices" class='select'>
+            <input type = "radio" name="{{question.id}}" value="{{question.option1}}">{{question.option1}}<br>
+            <input type = "radio" name="{{question.id}}" value="{{question.option2}}">{{question.option2}}<br>
+            <input type = "radio" name="{{question.id}}" value="{{question.option3}}">{{question.option3}}<br>
+            <input type = "radio" name="{{question.id}}" value="{{question.option4}}">{{question.option4}}<br>
+        </div>
+        <hr>
+        {% endfor %}
+        <div style="text-align:center"> <input style="padding: 10px 35px;font-size:120%;cursor: pointer;" type="submit" class="submit" id="submit" value="Submit"/></div>
+        {% csrf_token %}
+    </form>
+
+{% endblock blog_content %}

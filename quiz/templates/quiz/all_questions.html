@@ -13,9 +13,10 @@
                 C: {{ question.option3 }}<br>
                 D: {{ question.option4 }}<br>
                 Answer: {{ question.answer }}<br>
+                <button class="btn btn-danger"><a style="color: white;" href="{% url 'quiz:delete_question' question.id %}">DELETE</a></button>
                 <hr>
             {% endfor %}
         </p>
     </div>
-    <p><a href="{% url 'quiz:add_quiz' %}">Click</a> To Add Question</p>
+    <button class="btn btn-success"><a style="color: white;" href="{% url 'quiz:add_quiz' %}">Add Question</a></button>
 {% endblock %}
