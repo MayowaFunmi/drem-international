@@ -1,27 +1,22 @@
-<!DOCTYPE html>
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
 
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to Quiz App</title>
-        <style>
-            a {
-                width: 15%;
-                height: 5%;
-                background-color: rgb(243, 234, 234);
-                position: absolute;
-                top:0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
-            }
-        </style>
-    </head>
+{% block title %}Quiz Section{% endblock title %}
 
-    <body>
-        <center><h1><a href="{% url 'quiz:index' %}">Start Quiz</a></h1></center>
-    </body>
+    <style>
+        a {
+            width: 15%;
+            height: 5%;
+            background-color: rgb(243, 234, 234);
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
 
-</html>
+{% block content %}
+    <center><h1><a href="{% url 'quiz:take_questions' %}">Start Quiz</a></h1></center>
+{% endblock %}
