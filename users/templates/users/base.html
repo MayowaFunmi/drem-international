@@ -21,7 +21,7 @@
     <!-- Header Section -->
     <header class="container-fluid">
         <div class="card" style="background-color: #FFD700;">
-            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px; text-shadow: 2px 2px;">
+            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px; text-shadow: 1px">
                 <img id="drem_logo" src="{% static 'img/drem_logo.jpg' %}">
                 DESTINY RESCUE MISSION INTERNATIONAL
                 <p style="font-size: 10px; margin: 5px; padding: 0px;">...Who so run to Christ shall be saved!!!</p>
@@ -49,11 +49,12 @@
                         <a class="nav-link" href="{% url 'users:contact_us' %}">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="{% url 'users:about_us' %}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'quiz:welcome' %}">Quiz</a>
+                        <a class="nav-link" href="{% url 'blog:post_new' %}">{% block blog %}{% endblock blog %}</a>
                     </li>
+
                     <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Spiritual Corner
@@ -61,7 +62,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{% url 'users:testimony' %}">Testimony Arena</a></li>
                                 <li><a class="dropdown-item" href="{% url 'users:prayer_request' %}">Prayer Request</a></li>
-                                <li><a class="dropdown-item" href="#">Bible Quiz</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quiz:welcome' %}">Bible Quiz</a></li>
                             </ul>
                         </li>
                     {% if user.is_authenticated and not user.is_staff %}
@@ -72,7 +73,6 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'quiz:welcome' %}">Quiz</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -122,24 +122,24 @@
         {% block blog_content %}
         <div class="row">
             <!-- Column 4 Section Starts -->
-            <div class="col-sm-4" style="background-color: #806f45; color: white;">
-                <div>
-                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Vision</h2>
-                    <p>...Raising destiny and purpose fulfilled generation and purely sanctified youths for Christ even in this insane society...</p>
-                </div>
+            <div class="col-sm-4">
+                <div class="overflow-auto">
+                    <div>
+                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Vision</h2>
+                        <p>...Raising destiny and purpose fulfilled generation and purely sanctified youths for Christ even in this insane society...</p>
+                    </div>
+                    <div>
+                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Mission</h2>
+                        <p>...To open the spiritual instinct of youths to some tactics of satan concerning destiny hindering factors through sound teachings of God's word, putting into practice and rigorous/fervent prayers...</p>
+                    </div>
 
-                <div>
-                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Mission</h2>
-                    <p>...To open the spiritual instinct of youths to some tactics of satan concerning destiny hindering factors through sound teachings of God's word, putting into practice and rigorous/fervent prayers...</p>
-                </div>
-
-                <div>
-                    <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Foundational Scriptures</h2>
-                    <p>
-                        ...The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
-                        To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
-                        To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified...<br>
-                    </p>
+                    <div>
+                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Foundational Scriptures</h2>
+                        <p>
+                            ...The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
+                            To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
+                            To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified...<br>
+                        </p>
                     <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
                         Isaiah 61:1-7, Luke 4:18-19
                     </p>
@@ -149,6 +149,7 @@
                     <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
                         Romans 10:13
                     </p>
+                </div>
                 </div>
             </div>
             <!-- Column 4 Section Ends -->
@@ -187,7 +188,7 @@
                 </div>
                 <!-- Pictures Slide Show Carousel Ends -->
 
-                <div style="background-color: #8c6f6d; color: white; border: 2px #FFD700 solid; margin-top: 5px;">
+                <div class="overflow-auto" style="background-color: #8c6f6d; color: white; border: 2px #FFD700 solid; margin-top: 5px;">
                 {% block content %}
                     <div>
                         <h2>...First words from the convener...</h2>
