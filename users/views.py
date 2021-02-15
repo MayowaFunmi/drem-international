@@ -170,6 +170,8 @@ def update_user(request):
     return render(request, 'users/update_user_profile.html', {'form': form})
 
 
+def about_us(request):
+    return render(request, 'users/about_us.html')
 ################# SuperUser Privileges ############################################################################
 
 # list all registered users
