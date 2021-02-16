@@ -5,65 +5,72 @@
 {% block title %}Blog Post Detail{% endblock title %}
 
 {% block blog_content %}
-    <div class="post-entry">
-        <h2>{{ object.title }}</h2>
-        <small>by {{ object.author }} | {{ object.date }}</small>
-        <p>{{ object.body }}</p>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="post-entry">
+                <h2>{{ object.title }}</h2>
+                <small>by {{ object.author }} | {{ object.date }}</small>
+                <p>{{ object.body }}</p>
+            </div>
+
+            <div>
+                {% if comments %}
+                    <strong class="text-secondary">{{ object.number_of_comments }} Comment{{ object.number_of_comments|pluralize }}</strong>
+                    <hr>
+                    <ul>
+                        {% for comment in comments %}
+                        <li>
+                            <div>
+                                <span>
+                                    <strong class="text-info">{{ comment.author }} </strong>
+                                    <small class="text-muted">{{ comment.date }}</small>
+                                </span>
+                                <p>{{ comment.comment|safe }}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong class="text-secondary">No comments yet...</strong>
+                {% endif %}
+            </div>
+
+            <!-- COMMENTS  -->
+            <h2>Leave your comment!</h2>
+            <div id="comments_section">
+
+            {% if user.is_authenticated %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {% for field in comment_form %}
+                            <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
+                                {{ field.label }}:
+                            </div>
+
+                            <div class="form-control">
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-info" type="submit">Add comment <i class="fas fa-comments"></i></button>
+                </form>
+
+            {% else %}
+                <a class="btn btn-outline-info" href="{% url 'users:login' %}?next={{request.path}}">Log in to add a comment!</a><br>
+            {% endif %}
+            </div>
+
+            <div>
+            {% if request.user == post.author %}
+                <p><a href="{% url 'blog:post_edit' post.pk %}">Edit Post</a> | <a href="{% url 'blog:post_delete' post.pk %}">Delete Post</a></p>
+            {% endif %}
+            <p>Back to <a href="{% url 'blog:post_list' %}">All Post</a>.</p>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+
+        </div>
     </div>
-
-    <div>
-        {% if comments %}
-            <strong class="text-secondary">{{ object.number_of_comments }} Comment{{ object.number_of_comments|pluralize }}</strong>
-            <hr>
-            <ul>
-                {% for comment in comments %}
-                    <li>
-                        <div>
-                            <span>
-                                <strong class="text-info">{{ comment.author }} </strong>
-                                <small class="text-muted">{{ comment.date }}</small>
-                            </span>
-                            <p>{{ comment.comment|safe }}</p>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong class="text-secondary">No comments yet...</strong>
-        {% endif %}
-    </div>
-
-    <!-- COMMENTS  -->
-    <h2>Leave your comment!</h2>
-    <div id="comments_section">
-
-        {% if user.is_authenticated %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    {% for field in comment_form %}
-                        <div class="form-label" style="font-style: italic; text-transform: capitalize; padding-top: 10px; padding-bottom: 5px; font-weight: bold;">
-                            {{ field.label }}:
-                        </div>
-
-                        <div class="form-control">
-                            {{ field }}
-                        </div>
-                    {% endfor %}
-                </div>
-                <button class="btn btn-info" type="submit">Add comment <i class="fas fa-comments"></i></button>
-            </form>
-
-        {% else %}
-            <a class="btn btn-outline-info" href="{% url 'users:login' %}?next={{request.path}}">Log in to add a comment!</a><br>
-        {% endif %}
-    </div>
-
-    <div>
-        {% if request.user == post.author %}
-            <p><a href="{% url 'blog:post_edit' post.pk %}">Edit Post</a> | <a href="{% url 'blog:post_delete' post.pk %}">Delete Post</a></p>
-        {% endif %}
-        <p>Back to <a href="{% url 'blog:post_list' %}">All Post</a>.</p>
-    </div>
-
 {% endblock blog_content %}

@@ -3,42 +3,51 @@
 {% block title %}Blog Post List{% endblock title %}
 {% block blog %}New Blog{% endblock blog %}
 {% block blog_content %}
-    <div>
-        {% for post in posts %}
-            <div class="card">
-                <div class="card-header">
-                    <span class="font-weight-bold"><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></span> &middot;
-                    <span class="text-muted">by @<a href="{% url 'users:user_profile' %}">{{ post.author }}</a> |
-                    {{ post.date }}</span>
-                    Category:&nbsp;
-                    <span>
-                        {% for category in post.categories.all %}
-                            <a href="{% url 'blog:blog_category' category.name %}">
-                                {{ category.name }}
-                            </a>&nbsp;
-                        {% endfor %}
-                    </span>
-                </div>
 
-                <div class="card-body">
-                    <p>{{ post.body | slice:":400" }}...</p>
-                    {% if request.user == post.author %}
-                        <a href="{% url 'blog:post_edit' post.pk %}">Edit</a> |
-                        <a href="{% url 'blog:post_delete' post.pk %}">Delete</a> |
-                        <a href="{% url 'blog:post_new' %}">New Post</a>
-                    {% endif %}
-                </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div>
+                {% for post in posts %}
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="font-weight-bold"><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></span> &middot;
+                            <span class="text-muted">by @<a href="{% url 'users:user_profile' %}">{{ post.author }}</a> |
+                                {{ post.date }}</span>
+                                Category:&nbsp;
+                            <span>
+                                {% for category in post.categories.all %}
+                                    <a href="{% url 'blog:blog_category' category.name %}">
+                                        {{ category.name }}
+                                    </a>&nbsp;
+                                {% endfor %}
+                            </span>
+                        </div>
 
-                <div class="card-footer">
-                    {% for comment in post.comments.all %}
-                        <p>
-                            <span class="font-weight-bold">{{ comment.author }}&middot;</span>
-                                {{ comment }}
-                        </p>
-                    {% endfor %}
-                </div>
+                        <div class="card-body">
+                            <p>{{ post.body | slice:":150" }}...</p>
+                            {% if request.user == post.author %}
+                                <a href="{% url 'blog:post_edit' post.pk %}">Edit</a> |
+                                <a href="{% url 'blog:post_delete' post.pk %}">Delete</a> |
+                                <a href="{% url 'blog:post_new' %}">New Post</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="card-footer">
+                            {% for comment in post.comments.all %}
+                                <p>
+                                    <span class="font-weight-bold">{{ comment.author }}&middot;</span>
+                                        {{ comment | slice:":150" }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
             </div>
-            <br>
-        {% endfor %}
+        </div>
+
+        <div class="col-sm-4">
+
+        </div>
     </div>
 {% endblock blog_content %}

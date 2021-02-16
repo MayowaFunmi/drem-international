@@ -45,9 +45,10 @@ class AdminSignUpView(View):
             message = f'The Login Registration Code for {first_name} {last_name} is {reg_code}.' \
                       f'It consists of 7 digit numbers and 3 capital letters (case sensitive).'
             sender = 'mayordecoder@gmail.com'
-            recipient = 'akinade.mayowa@gmail.com'
+            recipient1 = 'akinade.mayowa@gmail.com'
+            recipient2 = 'destinyrescuemissionintl@gmail.com'
 
-            send_mail(subject, message, sender, [recipient], fail_silently=False)
+            send_mail(subject, message, sender, [recipient1, recipient2], fail_silently=False)
             photo = request.FILES['photo']
             fs = FileSystemStorage()
             photo_filename = fs.save(photo.name, photo)
