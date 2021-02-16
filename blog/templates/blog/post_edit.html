@@ -5,10 +5,19 @@
 {% block title %}Edit Blog Post{% endblock title %}
 
 {% block blog_content %}
-    <h1>Edit</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info ml-2" type="submit">Update</button>
-    </form>
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>Edit</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-info ml-2" type="submit">Update</button>
+            </form>
+        </div>
+
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+
 {% endblock blog_content %}
