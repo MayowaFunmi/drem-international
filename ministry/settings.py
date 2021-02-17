@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from decouple import config
 
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'templates'
@@ -23,10 +29,13 @@ MEDIA_DIR = BASE_DIR / 'media'
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '%&+%%@!%6&hg+#(6w4(d=j%_!7+&5yvcxnznwa&u-b5fzkcml%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = False
+
 
 ALLOWED_HOSTS = ['127.0.0.1', 'drem-international.herokuapp.com']
 
@@ -148,8 +157,14 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'users.CustomUser'    # use custom user model in place of built-in user model
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = config('SENDGRID_API_KEY')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
