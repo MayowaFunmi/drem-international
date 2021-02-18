@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
@@ -5,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from .models import Post, Category, Comment
 from .forms import CategoryForm, CommentForm
+from users.decorators import unauthorised_user
 
 
 class PostListView(LoginRequiredMixin, generic.ListView):
@@ -87,6 +89,8 @@ class PostCreateView(LoginRequiredMixin, generic.edit.CreateView):
         return super().form_valid(form)
 
 
+@login_required
+@unauthorised_user
 def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -105,6 +109,8 @@ def add_category(request):
     return render(request, 'blog/category.html', {'form': form})
 
 
+@login_required
+@unauthorised_user
 def blog_category(request, category):
     posts = Post.objects.filter(
         categories__name__contains=category

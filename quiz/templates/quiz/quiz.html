@@ -3,6 +3,7 @@
 {% block title %}Quiz Questions{% endblock title %}
 
 {% block blog_content %}
+    {% if questions %}
     <h3>Choose one option in each of the following questions.</h3>
     <form action= "{% url 'quiz:answers' %}" method = "POST" >
         {% for question in questions %}
@@ -18,5 +19,8 @@
         <div style="text-align:center"> <input style="padding: 10px 35px;font-size:120%;cursor: pointer;" type="submit" class="submit" id="submit" value="Submit"/></div>
         {% csrf_token %}
     </form>
+    {% else %}
+    <h3>Quiz not available. Please check back later</h3>
+    {% endif %}
 
 {% endblock blog_content %}

@@ -10,10 +10,12 @@ from users.decorators import unauthorised_user
 User = get_user_model()
 
 
+@login_required
 def welcome(request):
     return render(request, 'quiz/welcome.html')
 
 
+@login_required
 def questions(request):
     questions = Questions.objects.all()
     context = {'questions': questions}
@@ -23,6 +25,7 @@ def questions(request):
 score = 0
 
 
+@login_required
 def answers(request):
     questions = Questions.objects.all()
     global score
@@ -51,6 +54,7 @@ def certificate(request):
     return render(request, 'quiz/certificate.html', context)
 
 
+@login_required
 def check(request):
     question = Questions.objects.all()
     user = request.user
