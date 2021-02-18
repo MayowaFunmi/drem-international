@@ -31,12 +31,13 @@ SECRET_KEY = '%&+%%@!%6&hg+#(6w4(d=j%_!7+&5yvcxnznwa&u-b5fzkcml%'
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'drem-international.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'drem-international.herokuapp.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,8 +144,9 @@ USE_TZ = True
 
 LOGIN_URL = '/users/login/'
 STATIC_URL = '/static/'
-STATICFILES_DIR = [STATIC_DIR, ]
 STATIC_ROOT = STATIC_DIR
+STATICFILES_DIRS = [STATIC_DIR, ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
