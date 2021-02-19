@@ -48,7 +48,7 @@ class AdminSignUpView(View):
             recipient1 = 'akinade.mayowa@gmail.com'
             recipient2 = 'destinyrescuemissionintl@gmail.com'
 
-            send_mail(subject, message, sender, [recipient1, recipient2], fail_silently=False)
+            send_mail(subject, message, sender, [recipient1], fail_silently=False)
             photo = request.FILES['photo']
             fs = FileSystemStorage()
             photo_filename = fs.save(photo.name, photo)
