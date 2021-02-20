@@ -1,0 +1,9 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up Form{% endblock title %}
+
+
+{% block content %}
+    <h2>Sorry, something went wrong. <br> Return <a class="btn btn-success" href="{% url 'users:home' %}">Home</a></h2>
+{% endblock %}

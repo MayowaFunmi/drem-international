@@ -14,26 +14,30 @@ def award_view(request):
     if request.method == 'POST':
         form = AwardForm(data=request.POST, files=request.FILES)
 
-        if form.is_valid():
-            form.save(commit=True)
+        try:
+            if form.is_valid():
+                form.save(commit=True)
 
-            award_image_1 = request.FILES['award_image_1']
-            fs = FileSystemStorage()
-            award_image_1_filename = fs.save(award_image_1.name, award_image_1)
+                award_image_1 = request.FILES['award_image_1']
+                fs = FileSystemStorage()
+                award_image_1_filename = fs.save(award_image_1.name, award_image_1)
 
-            award_image_2 = request.FILES['award_image_2']
-            fs = FileSystemStorage()
-            award_image_2_filename = fs.save(award_image_2.name, award_image_2)
+                award_image_2 = request.FILES['award_image_2']
+                fs = FileSystemStorage()
+                award_image_2_filename = fs.save(award_image_2.name, award_image_2)
 
-            context = {
-                'title': form.cleaned_data['title'],
-                'name': form.cleaned_data['name'],
-                'award_title': form.cleaned_data['award_title'],
-                'award_image_1': fs.url(award_image_1_filename),
-                'award_image_2': fs.url(award_image_2_filename),
-                'brief_profile': form.cleaned_data['brief_profile'],
-            }
-            return render(request, 'awards/biography_detail.html', context)
+                context = {
+                    'title': form.cleaned_data['title'],
+                    'name': form.cleaned_data['name'],
+                    'award_title': form.cleaned_data['award_title'],
+                    'award_image_1': fs.url(award_image_1_filename),
+                    'award_image_2': fs.url(award_image_2_filename),
+                    'brief_profile': form.cleaned_data['brief_profile'],
+                }
+                return render(request, 'awards/biography_detail.html', context)
+        except:
+            return render(request, 'users/errors.html')
+
     else:
         form = AwardForm()
     return render(request, 'awards/biography_form.html', {'form': form})

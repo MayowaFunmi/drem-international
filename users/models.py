@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
     born_again = models.CharField(choices=BORNAGAIN, max_length=5)
     church_name = models.CharField(max_length=100, help_text='What is the name of your church?')
     marital_status = models.CharField(choices=STATUS, max_length=50)
-    address = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=20)
     date_of_birth = models.DateField(null=True, blank=True, help_text="Enter Date In The Format YYYY-MM-DD")
     photo = models.ImageField(upload_to='profile_pics/%Y/%m/%d/', null=True, blank=True)
