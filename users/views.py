@@ -28,33 +28,30 @@ class UserSignUpView(View):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
-        try:
-            if form.is_valid():
-                form.save(commit=True)
+        if form.is_valid():
+            form.save(commit=True)
 
-                photo = request.FILES['photo']
-                fs = FileSystemStorage()
-                photo_filename = fs.save(photo.name, photo)
+            photo = request.FILES['photo']
+            fs = FileSystemStorage()
+            photo_filename = fs.save(photo.name, photo)
 
-                context = {
-                    'username': form.cleaned_data['username'],
-                    'email': form.cleaned_data['email'],
-                    'first_name': form.cleaned_data['first_name'],
-                    'last_name': form.cleaned_data['last_name'],
-                    'middle_name': form.cleaned_data['middle_name'],
-                    'born_again': form.cleaned_data['born_again'],
-                    'church_name': form.cleaned_data['church_name'],
-                    'marital_status': form.cleaned_data['marital_status'],
-                    'address': form.cleaned_data['address'],
-                    'phone_number': form.cleaned_data['phone_number'],
-                    'date_of_birth': form.cleaned_data['date_of_birth'],
-                    'favourite_bible_verse': form.cleaned_data['favourite_bible_verse'],
-                    'about_me': form.cleaned_data['about_me'],
-                    'photo': fs.url(photo_filename),
-                }
-                return render(request, 'users/signup_success.html', context)
-        except:
-            return render(request, 'users/errors.html')
+            context = {
+                'username': form.cleaned_data['username'],
+                'email': form.cleaned_data['email'],
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'middle_name': form.cleaned_data['middle_name'],
+                'born_again': form.cleaned_data['born_again'],
+                'church_name': form.cleaned_data['church_name'],
+                'marital_status': form.cleaned_data['marital_status'],
+                'address': form.cleaned_data['address'],
+                'phone_number': form.cleaned_data['phone_number'],
+                'date_of_birth': form.cleaned_data['date_of_birth'],
+                'favourite_bible_verse': form.cleaned_data['favourite_bible_verse'],
+                'about_me': form.cleaned_data['about_me'],
+                'photo': fs.url(photo_filename),
+            }
+            return render(request, 'users/signup_success.html', context)
 
         else:
             print(form.errors)
@@ -89,12 +86,8 @@ def user_login(request):
 @login_required
 def user_profile(request):
     if User.objects.filter(username=request.user.username).exists():
-        try:
-            user = User.objects.get(username=request.user.username)
-            return render(request, 'users/user_profile.html', {'user': user})
-        except:
-            return render(request, 'users/errors.html')
-
+        user = User.objects.get(username=request.user.username)
+        return render(request, 'users/user_profile.html', {'user': user})
 
 # logout view
 
