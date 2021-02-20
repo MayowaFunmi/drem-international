@@ -22,6 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Username'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your First Name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Surname'}),
+            'date_of_birth': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'YYYY-MM-DD'}),
             'middle_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your Middle Name'}),
             'church_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter The Name Of Your Church'}),
             #'marital_status': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose Your Marital Status'}),
