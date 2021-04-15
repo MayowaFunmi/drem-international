@@ -3,155 +3,166 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
     <!-- reference your installed Font Awesome Free package's files here -->
     <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
-    <title>{% block title %}Title{% endblock title %}</title>
+    <title>{% block title %}Welcome To DREM International{% endblock title %}</title>
+
+    {% block style %}
+    {% endblock style %}
 </head>
 <body>
+
     <!-- Header Section -->
-    <header class="container-fluid">
-        <div class="card" style="background-color: #FFD700;">
-            <div class="card-header" style="font-family: 'Anton', sans-serif; font-size: 40px; text-align: center; padding-bottom: 5px; text-shadow: 1px">
-                <img id="drem_logo" src="{% static 'img/drem_logo.jpg' %}">
-                DESTINY RESCUE MISSION INTERNATIONAL
-                <p style="font-size: 10px; margin: 5px; padding: 0px;">...Who so run to Christ shall be saved!!!</p>
+    
+    <header class="container-fluid header fixed-top">
+        <div class="card">
+            <div class="card-header">
+                <img src="{% static 'img/drem_logo.jpg' %}">
+                DESTINY RESCUE MISSION INTERNATIONAL (DREM)
+                <p>...Who so run to Christ shall be saved!!!</p>
             </div>
         </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand active" href="{% url 'users:home' %}">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'blog:post_list' %}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'awards:list_awards' %}">Awards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:contact_us' %}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:about_us' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog:post_new' %}">{% block blog %}{% endblock blog %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'school:sbi_home' %}">Bible Institute</a>
+                        </li>
+    
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Spiritual Corner
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'users:testimony' %}">Testimony Arena</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'users:prayer_request' %}">Prayer Request</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'quiz:welcome' %}">Bible Quiz</a></li>
+                                </ul>
+                            </li>
+                        {% if user.is_authenticated and not user.is_staff %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi! {{ user.username }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+                            </li>
+                        {% elif user.is_authenticated and user.is_staff %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ user.username }} (Admin)
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'myadmin:list_users' %}">View Users</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'quiz:all_questions' %}">Quiz Section</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:signup' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                            </li>
+                        <!--
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{% url 'myadmin:admin_signup' %}">Register</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'myadmin:admin_login' %}">Login</a></li>
+                                </ul>
+                            </li>
+                            -->
+                        {% endif %}
+    
+                    </ul>
+                </div>
+                <h3 id="clock"></h3>
+    
+            </div>
+        </nav>
     </header>
     <!-- End Header Section -->
 
+
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand active" href="{% url 'users:home' %}">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'blog:post_list' %}">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'awards:list_awards' %}">Awards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:contact_us' %}">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:about_us' %}">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog:post_new' %}">{% block blog %}{% endblock blog %}</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Spiritual Corner
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'users:testimony' %}">Testimony Arena</a></li>
-                                <li><a class="dropdown-item" href="{% url 'users:prayer_request' %}">Prayer Request</a></li>
-                                <li><a class="dropdown-item" href="{% url 'quiz:welcome' %}">Bible Quiz</a></li>
-                            </ul>
-                        </li>
-                    {% if user.is_authenticated and not user.is_staff %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hi! {{ user.username }}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
-                        </li>
-                    {% elif user.is_authenticated and user.is_staff %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ user.username }} (Admin)
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'users:user_profile' %}">Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'myadmin:list_users' %}">View Users</a></li>
-                                <li><a class="dropdown-item" href="{% url 'quiz:all_questions' %}">Quiz Section</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:signup' %}">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
-                        </li>
-                    <!--
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'myadmin:admin_signup' %}">Register</a></li>
-                                <li><a class="dropdown-item" href="{% url 'myadmin:admin_login' %}">Login</a></li>
-                            </ul>
-                        </li>
-                        -->
-                    {% endif %}
-
-                </ul>
-            </div>
-            <h3 id="clock"></h3>
-
-        </div>
-    </nav>
+    
     <!-- End Navigation Bar -->
 
-    <div class="container">
+    <div class="container home">
         {% block blog_content %}
         <div class="row">
             <!-- Column 4 Section Starts -->
             <div class="col-sm-4">
                 <div class="overflow-auto">
                     <div>
-                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Vision</h2>
+                        <h2>Our Vision</h2>
                         <p>...Raising destiny and purpose fulfilled generation and purely sanctified youths for Christ even in this insane society...</p>
                     </div>
                     <div>
-                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Our Mission</h2>
+                        <h2>Our Mission</h2>
                         <p>...To open the spiritual instinct of youths to some tactics of satan concerning destiny hindering factors through sound teachings of God's word, putting into practice and rigorous/fervent prayers...</p>
                     </div>
 
                     <div>
-                        <h2 style="color: #FFD700; font-weight: bold; text-decoration: underline; font-family: 'Tangerine', cursive; font-size: 30px; text-align: center;">Foundational Scriptures</h2>
+                        <h2>Foundational Scriptures</h2>
                         <p>
                             ...The Spirit of the Lord God is upon me; because the Lord hath anointed me to preach good tidings unto the meek; he hath sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to them that are bound;<br>
                             To proclaim the acceptable year of the Lord, and the day of vengeance of our God; to comfort all that mourn;<br>
                             To appoint unto them that mourn in Zion, to give unto them beauty for ashes, the oil of joy for mourning, the garment of praise for the spirit of heaviness; that they might be called trees of righteousness, the planting of the Lord, that he might be glorified...<br>
                         </p>
-                    <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
-                        Isaiah 61:1-7, Luke 4:18-19
-                    </p>
-                    <p>
-                        For whosoever shall call upon the name of the Lord shall be saved...<br>
-                    </p>
-                    <p style="text-align: right; color: red; font-weight: bold; font-style: italic;">
-                        Romans 10:13
-                    </p>
-                </div>
+                        <p id="bible">
+                            Isaiah 61:1-7, Luke 4:18-19
+                        </p>
+                        <p>
+                            ...For whosoever shall call upon the name of the Lord shall be saved...<br>
+                        </p>
+                        <p id="bible">
+                            Romans 10:13
+                        </p>
+                    </div>
                 </div>
             </div>
             <!-- Column 4 Section Ends -->
@@ -167,16 +178,16 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img style="width: 200px; height: 300px;" src="{% static 'img/drem_handbill.jpg' %}" class="d-block w-100" alt="DREM HandBill">
+                            <img id="carousel-img" src="{% static 'img/drem_handbill.jpg' %}" class="d-block w-100" alt="DREM HandBill">
                         </div>
                         <div class="carousel-item">
-                            <img style="width: 200px; height: 300px;" src="{% static 'img/ocpos_handbill.jpg' %}" class="d-block w-100" alt="...">
+                            <img id="carousel-img" src="{% static 'img/ocpos_handbill.jpg' %}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img style="width: 200px; height: 300px;" src="{% static 'img/year_2021.jpg' %}" class="d-block w-100" alt="...">
+                            <img id="carousel-img" src="{% static 'img/year_2021.jpg' %}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img style="width: 200px; height: 300px;" src="{% static 'img/merry_christmass.jpg' %}" class="d-block w-100" alt="...">
+                            <img id="carousel-img" src="{% static 'img/merry_christmass.jpg' %}" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
@@ -190,7 +201,7 @@
                 </div>
                 <!-- Pictures Slide Show Carousel Ends -->
 
-                <div class="overflow-auto" style="background-color: #8c6f6d; color: white; border: 2px #FFD700 solid; margin-top: 5px;">
+                <div class="overflow-auto">
                 {% block content %}
                     <div>
                         <h2>...First words from the convener...</h2>
@@ -250,6 +261,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
 
     {% block javascript %}

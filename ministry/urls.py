@@ -25,10 +25,12 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('blog/', include('blog.urls', namespace='blog')),
     path('awards/', include('awards.urls', namespace='awards')),
+    path('school/', include('bible_school.urls', namespace='school')),
     path('myadmin/', include('myadmin.urls', namespace='myadmin')),
     path('quiz/', include('quiz.urls', namespace='quiz')),
 
 ]
 
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

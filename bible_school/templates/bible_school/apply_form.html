@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Application Form{% endblock title %}
+
+{% block blog_content %}
+    <div class="row">
+        <div id="headings" class="col-md-6 col-md-offset-3">
+            <h1>WELCOME TO SOPHUS BIBLE INSTITUTE(S.B.I)</h1>
+            <center>
+                <h3>APPLICATION FORM</h3><br>
+                <p>Fill the form below to apply for the bible school</p>
+            </center>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <div class="alert alert-danger" style="margin-top:10px">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <input type="submit" name="submit" class="btn btn-success" value="Submit Application"/>
+            </form>
+        </div>
+    </div>
+{% endblock blog_content %}

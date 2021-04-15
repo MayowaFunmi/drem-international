@@ -1,15 +1,112 @@
-.card #header {
+:root{
+    --body-color: #FFD700;
+}
+*{
+    margin: 0;
+    padding: 0;
+    outline: none!important;
+}
+body{
+    background-color: var(--body-color);
+    font-family: 'Poppins', sans-serif;
+}
+/*--------------
+Header
+---------------*/
+.header{
+    top: 0;
+    margin: 0;
+}
+.header .card{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--body-color);
+}
+.header .card-header{
     font-family: 'Anton', sans-serif;
     font-size: 40px;
     text-align: center;
+    padding-bottom: 5px;
+    text-shadow: 1px;
 }
-
-#drem_logo {
-    display: inline-block;
+.header .card-header img{
     width: 200px;
     height: 100px;
-    margin-right: 10px;
+    float: left;
 }
+.header .card-header p{
+    font-size: 10px;
+    margin: 5px;
+    padding: 0px;
+}
+/*--------------
+Navbar
+---------------*/
+.navbar{
+    background-color: transparent;
+    top: 0;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 5px;
+    padding-bottom: 1px;
+}
+.navbar .navbar-brand{
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.navbar .nav-item .nav-link,
+.dropdown .dropdown-item{
+    text-transform: capitalize;
+    font-size: 17px;
+    font-weight: bold;
+    position: relative;
+}
+.navbar .nav-item:hover,
+.navbar .navbar-brand:hover,
+.dropdown .dropdown-item:hover{
+    background-color: var(--body-color);
+    border-radius: 10px;
+}
+.navbar-brand:hover {
+    padding: 5px;
+    font-weight: bold;
+}
+
+/*--------------
+Home
+---------------*/
+.home{
+    min-height: 100vh;
+    padding-top: 200px;
+    border-radius: 0 0 200px 0;
+    position: relative;
+}
+.home h2{
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: 'Tangerine', cursive; 
+    font-size: 30px; 
+    text-align: center;
+}
+#bible{
+    text-align: right;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
+.carousel-item{
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+.carousel-item #carousel-img{
+    position: absolute;
+    width: 100%;
+    height: 300px;
+}
+
+
+
 
 #clock {
     float: right;
