@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'awards',
     'myadmin',
     'quiz',
+    'bible_school',
     'crispy_forms',
     'fontawesome-free',
 ]
@@ -130,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -145,7 +146,7 @@ USE_TZ = True
 LOGIN_URL = '/users/login/'
 STATIC_URL = '/static/'
 STATIC_ROOT = STATIC_DIR
-STATICFILES_DIRS = [BASE_DIR / 'ministry/static', ]
+#STATICFILES_DIRS = [BASE_DIR / 'ministry/static', ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
