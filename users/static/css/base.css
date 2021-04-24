@@ -76,7 +76,7 @@ Home
 ---------------*/
 .home{
     min-height: 100vh;
-    padding-top: 200px;
+    padding-top: 30px;
     border-radius: 0 0 200px 0;
     position: relative;
 }
