@@ -105,12 +105,42 @@ def apply_form(request):
         if form.is_valid():
             myform = form.save(commit=False)
             myform.user = request.user
+
             if myform.obedience == False:
                 messages.error(request, "You must agree to adhere strictly to the rules and regulations of S.B.I. Please check the box next to 'obedience' in the application form.")
                 return render(request, 'bible_school/apply_form.html', {'form': form})
             else:
                 myform.save()
-            return render(request, 'bible_school/application_success.html')
+            context = {
+                'user': request.user,
+                'title': form.cleaned_data['title'],
+                'course_of_study': form.cleaned_data['course_of_study'],
+                'country_of_residence': form.cleaned_data['country_of_residence'],
+                'state_or_city_1': form.cleaned_data['state_or_city_1'],
+                'residential_address': form.cleaned_data['residential_address'],
+                'country_of_origin': form.cleaned_data['country_of_origin'],
+                'state_or_city_2': form.cleaned_data['state_or_city_2'],
+                'permanent_address': form.cleaned_data['permanent_address'],
+                'phone_number': form.cleaned_data['phone_number'],
+                'place_of_birth': form.cleaned_data['place_of_birth'],
+                'marital_status': form.cleaned_data['marital_status'],
+                'gender': form.cleaned_data['gender'],
+                'name_of_spouse': form.cleaned_data['name_of_spouse'],
+                'number_of_children': form.cleaned_data['number_of_children'],
+                'children_age_bracket': form.cleaned_data['children_age_bracket'],
+                'years_born_again': form.cleaned_data['years_born_again'],
+                'salvation_experience': form.cleaned_data['salvation_experience'],
+                'spirit_baptism': form.cleaned_data['spirit_baptism'],
+                'spiritual_gifts': form.cleaned_data['spiritual_gifts'],
+                'spiritual_fruit': form.cleaned_data['spiritual_fruit'],
+                'ministry_gift': form.cleaned_data['ministry_gift'],
+                'discplined': form.cleaned_data['discplined'],
+                'ministry_experience': form.cleaned_data['ministry_experience'],
+                'spiritual_mentor': form.cleaned_data['spiritual_mentor'],
+                'obedience': form.cleaned_data['obedience'],
+                #'created_date': form.cleaned_data['created_date'],
+            }
+            return render(request, 'bible_school/application_success.html', context)
     else:
         form = ApplicationForm()
     return render(request, 'bible_school/apply_form.html', {'form': form})

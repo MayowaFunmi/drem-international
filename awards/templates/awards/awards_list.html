@@ -14,7 +14,7 @@
             Brief Profile: {{ award.brief_profile }}<br>
 
             {% if user.is_superuser %}
-                <button class="btn btn-dange" style="color: white;"><a href="{% url 'awards:delete_award' award.id %}">Delete</a></button>
+                <button class="btn btn-danger" style="color: white;"><a href="{% url 'awards:delete_award' award.id %}">Delete</a></button>
             {% endif %}
         {% endfor %}
     </div>

@@ -71,4 +71,4 @@ class Application(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Application for {self.user.last_name} {self.user.first_name}'
+        return f'{self.user.first_name} {self.user.last_name}'

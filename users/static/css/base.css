@@ -83,7 +83,7 @@ Home
 .home h2{
     font-weight: bold;
     text-decoration: underline;
-    font-family: 'Tangerine', cursive; 
+    font-family: 'Tangerine', cursive;
     font-size: 30px; 
     text-align: center;
 }
@@ -115,4 +115,33 @@ Home
 #slide_1, #slide_2 {
     width: 50%;
     height: 50%;
+}
+
+
+#footer {
+    display: block;
+    text-align: center;
+    color: #ffffff;
+    padding: 30px 10px 30px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: normal;
+    background-color: #52514f;
+    vertical-align: top;
+}
+
+#footer .socials {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#foorter .socials .fab {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 25px;
+    line-height: 25px;
+    background-color: #c7c7c7;
 }
