@@ -2,6 +2,7 @@ import random
 import string
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 
 # Create your models here.
@@ -13,6 +14,9 @@ def random_code(digit=7, letter=3):
     sample_list = list(sample_str)
     final_string = ''.join(sample_list)
     return final_string
+
+
+fs = FileSystemStorage(location='media/profile_pics/%Y/%m/%d/')
 
 
 class CustomUser(AbstractUser):

@@ -91,10 +91,14 @@ def code_login(request):
     if request.method == 'POST':
         code = request.POST['login_code']
         if code == request.user.code_number:
-            return redirect('school:apply')
+            return redirect('school:instructions')
         else:
             messages.error(request, "Incorrect Login Code")
     return redirect('school:sbi_home')
+
+
+def instructions(request):
+    return render(request, 'bible_school/instructions.html')
 
 
 @login_required

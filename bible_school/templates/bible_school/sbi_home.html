@@ -5,6 +5,20 @@
 
 {% block content %}
 <div>
+    <div class="form-group">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger" style="margin-top:10px">
+                        {{ message }}
+                    </div>
+                {% endif %}
+                {% if message.tags == 'success' %}
+                    <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
     <h1>SOPHUS BIBLE INSTITUTE(S.B.I)</h1>
     <p>
     <h2>...Coordinator's Welcome Note...</h2><br>
@@ -47,20 +61,6 @@
 
 <div>
     Click <button class="btn btn-info" id="application" style="padding: 1px;"><a>Application</a></button> to apply as a student of S.B.I
-    <div class="form-group">
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == 'error' %}
-                    <div class="alert alert-danger" style="margin-top:10px">
-                        {{ message }}
-                    </div>
-                {% endif %}
-                {% if message.tags == 'success' %}
-                    <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    </div>
 
     <div id="hide_form" style="display: none;">
         <h3>Please Enter Your Student Application Login Code:</h3>

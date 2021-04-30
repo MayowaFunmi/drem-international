@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Isnstruction For Application{% endblock title %}
+
+{% block blog_content %}
+    <div class="row">
+        <div id="headings" class="col-md-6 col-md-offset-3">
+            <h1>WELCOME TO SOPHUS BIBLE INSTITUTE(S.B.I)</h1>
+            <center>
+                <h3>INSTRUCTIONS FOR APPLICATION</h3><br>
+                <p>Please follow the instructions carefully before filling the application form</p>
+            </center>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3">
+            <div>
+                <ol>
+                    <li>Click on "Register" in the navigation bar to register on this site. If you have already registered and have username and password, skip this step.</li>
+                    <li>Once registered, Click "Login" in the navigation bar to login to the site using your username and password.</li>
+                    <li>Click on "Bible Institute" in the navigation bar to go to Sophus Bible Institute Page</li>
+                    <li>Read the coordinator's welcome note. Scroll down and click on the "Application" Button. You will then be asked to enter your Application login code.</li>
+                    <li>Enter your Login code and click "Submit" button. You will be redirected to the Bible Institute Application Form.</li>
+                    <li>
+                        Fill the form appropriately and submit.<br>
+                        <em>
+                            Note: In the Application form, the last box to check is "Obedience", to indicate your willingness to obey the rules and regulations pf the Institute.<br>
+                            Anyone who doesn't check the box will have his/her form rejected.
+                        </em>
+                    </li>
+                    <li>Upon successful submission of your form, you will be redirected to the page showing you the summary of your application details.</li>
+                </ol>
+            </div>
+
+            <div>
+                <button class="btn btn-success">Go to <a style="color: black;" href="{% url 'school:apply' %}">APPLICATION FORM</a> Page</button>
+            </div>
+        </div>
+    </div>
+{% endblock blog_content %}
