@@ -6,7 +6,8 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 User = get_user_model()
 
-
+admin.site.register(User)
+'''
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
@@ -14,4 +15,6 @@ class CustomUserAdmin(UserAdmin):
     list_display = ['username', 'email', 'code_number', 'first_name', 'last_name']
 
 admin.site.register(User, CustomUserAdmin)
+'''
+
 admin.site.site_header = 'DREM INTERNATIONAL ADMIN PAGE'

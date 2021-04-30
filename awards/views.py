@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
@@ -17,14 +19,13 @@ def award_view(request):
         try:
             if form.is_valid():
                 form.save(commit=True)
-
-                award_image_1 = request.FILES['award_image_1']
+                #print(os.getcwd())
+                image_1 = request.FILES['award_image_1'] if 'award_image_1' in request.FILES else None
                 fs = FileSystemStorage()
-                award_image_1_filename = fs.save(award_image_1.name, award_image_1)
+                award_image_1_filename = fs.save(image_1.name, image_1)
 
-                award_image_2 = request.FILES['award_image_2']
-                fs = FileSystemStorage()
-                award_image_2_filename = fs.save(award_image_2.name, award_image_2)
+                image_2 = request.FILES['award_image_2'] if 'award_image_2' in request.FILES else None
+                award_image_2_filename = fs.save(image_2.name, image_2)
 
                 context = {
                     'title': form.cleaned_data['title'],
