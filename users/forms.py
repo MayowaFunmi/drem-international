@@ -37,8 +37,22 @@ class CustomUserChangeForm(UserChangeForm):
         model = User
         fields = '__all__'
 
-# contact us form
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username', 'first_name', 'last_name', 'email', 'code_number', 'middle_name', 'gender', 'born_again',
+            'church_name', 'marital_status', 'address', 'phone_number', 'date_of_birth', 'photo', 'favourite_bible_verse',
+            'about_me'
+        ]
+        widgets = {
+            'username': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'code_number': forms.TextInput(attrs={'readonly': 'readonly'})
+        }
+
+
+# contact us form
 class ContactUsForm(forms.ModelForm):
     class Meta:
         model = ContactUs

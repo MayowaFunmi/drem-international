@@ -3,14 +3,28 @@
 {% block title %}List of Awards{% endblock title %}
 
 {% block content %}
+    <style>
+        .photo {
+            display: flex;
+            flex-flow: row wrap;
+        }
+    </style>
     <h2>DREM Team of the year 2020 Award List</h2>
     <div>
         {% for award in awards %}
             Title: {{ award.title }}<br>
             Name: {{ award.name }}<br>
             Award: {{ award.award_title }}<br>
-            Photo 1: <img src="{{ award.award_image_1.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
-            Photo 2: <img src="{{ award.award_image_2.url }}" style="width: 100px; height=100px; border-radius: 20px;"><br>
+            <div class="photo">
+                <div>
+                    Photo 1: <img src="{{ award.award_image_1.url }}" style="width: 300px; height=350px; border-radius: 20px;"><br>
+
+                </div>
+
+                <div>
+                    Photo 2: <img src="{{ award.award_image_2.url }}" style="width: 300px; height=350px; border-radius: 20px;"><br>
+                </div>
+            </div>
             Brief Profile: {{ award.brief_profile }}<br>
 
             {% if user.is_superuser %}

@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 
 from .decorators import unauthorised_user
-from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm
+from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm, UserUpdateForm
 
 User = get_user_model()
 
@@ -178,7 +178,7 @@ def prayer_request(request):
 @login_required
 def update_user(request):
     obj = get_object_or_404(User, id=request.user.id)
-    form = CustomUserCreationForm(request.POST or None, instance=obj)
+    form = UserUpdateForm(request.POST or None, request.FILES or None, instance=obj)
 
     try:
         if form.is_valid():
