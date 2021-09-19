@@ -1,11 +1,12 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import Group
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 
 from .decorators import unauthorised_user
@@ -82,6 +83,7 @@ def user_login(request):
 
 # user Profile
 
+
 @login_required
 def user_profile(request):
     if User.objects.filter(username=request.user.username).exists():
@@ -90,12 +92,14 @@ def user_profile(request):
 
 # logout view
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/users/home/')
 
 # view for contact form
+
 
 def contact_us(request):
     if request.method == 'POST':
@@ -191,10 +195,22 @@ def update_user(request):
 def about_us(request):
     return render(request, 'users/about_us.html')
 
+
 def convener(request):
     return render(request, 'users/convener.html')
-################# SuperUser Privileges ############################################################################
 
-# list all registered users
 
-####################################################################################################################
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your Password Has Been Changed Successfully')
+            return redirect('users:logout')
+        else:
+            messages.error(request, 'Error while changing your password. Please try again')
+            return redirect('users:change_password')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {'form': form})

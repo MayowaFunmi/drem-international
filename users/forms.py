@@ -54,8 +54,8 @@ class ContactUsForm(forms.ModelForm):
 
 # login form
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
+    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
 
 # testimony form
