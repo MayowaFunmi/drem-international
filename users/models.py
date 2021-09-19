@@ -22,8 +22,8 @@ fs = FileSystemStorage(location='media/profile_pics/%Y/%m/%d/')
 class CustomUser(AbstractUser):
     code_number = models.CharField(default=random_code, max_length=10)
     GENDER = [
-        ('M', 'Male'),
-        ('F', 'Female'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
     ]
     gender = models.CharField(choices=GENDER, max_length=10)
     STATUS = [

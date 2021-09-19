@@ -1,15 +1,158 @@
 {% extends 'users/base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Sign Up Form{% endblock title %}
+{% block title %}Update Profile Form{% endblock title %}
 
 
 {% block content %}
     <div>
-        <h3>Please fill the form below to register.</h3>
+        <h3>Please fill the form below to update your profile.</h3>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mb-3">
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Username
+                </span>
+                {{ form.username }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    First Name
+                </span>
+                {{ form.first_name }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Last Name
+                </span>
+                {{ form.last_name }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Email Address
+                </span>
+                {{ form.email }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Code Number
+                </span>
+                {{ form.code_number }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Middle name
+                </span>
+                {{ form.middle_name }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Gender
+                </span>
+                {{ form.gender }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Born Again?
+                </span>
+                {{ form.born_again }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Name Of Church
+                </span>
+                {{ form.church_name }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Marital Status
+                </span>
+                {{ form.marital_status }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Address
+                </span>
+                {{ form.address }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Phone Number
+                </span>
+                {{ form.phone_number }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Date Of Birth
+                </span>
+                {{ form.date_of_birth }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Current Picture
+                </span>
+                <img src="{{ user.photo.url }}" style="width: 100px; height=100px; border-radius: 20px;">
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Change Picture
+                </span>
+                <input type="file" name="photo" accept="image/*" id="id_photo">
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    Favourite Verse
+                </span>
+                {{ form.favourite_bible_verse }}
+            </div>
+            <br>
+
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" style="margin-right: 15px; width:180px; margin_bottom: 15px;">
+                    About You
+                </span>
+                {{ form.about_me }}
+            </div>
+            <br>
+
+            <button class="btn btn-success" type="submit">
+                Update Profile
+            </button>
+        </form>
+    </div>
+{% endblock %}
+<!--
+<div class="mb-3">
                 <div class='error'>{{form.errors.username}}</div>
                 <div class='error'>{{form.errors.password}}</div>
                 <div class='error'>{{form.errors.photo}}</div>
@@ -24,10 +167,4 @@
                     </div>
                 {% endfor %}
             </div>
-
-            <button class="btn btn-success" type="submit">
-                Update Profile
-            </button>
-        </form>
-    </div>
-{% endblock %}
+-->
