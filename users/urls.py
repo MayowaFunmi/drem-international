@@ -17,4 +17,5 @@ urlpatterns = [
     path('about_the_convener/', views.convener, name='convener'),
     path('home/', views.base, name='home'),
     path('change_password/', views.change_password, name='change_password'),
+    path('password_reset/', views.password_reset, name='password_reset'),
 ]

@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
-
+from cryptography.fernet import Fernet
 from .decorators import unauthorised_user
 from .forms import CustomUserCreationForm, ContactUsForm, LoginForm, TestimonyForm, PrayerRequestForm, UserUpdateForm
 
@@ -214,3 +214,24 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {'form': form})
+
+
+#used for security purposes(encryption and decryption)
+key = Fernet.generate_key()
+fernet = Fernet(key)
+
+
+def password_reset(request):
+    if request.method == 'POST':
+        uid = str(request.POST.get("uid"))
+        uid = uid[2:len(uid)-1]
+        uid = bytes(uid, 'utf-8')
+        uid = int(fernet.decrypt(uid).decode())
+        new_password = request.POST.get("new_password")
+        user = User.objects.get(pk=uid)
+        user.set_password(new_password)
+        user.save()
+        messages.success(request, 'Password changed successfully! Now you can login to your account')
+        return redirect('/accounts/login')
+
+    return redirect('/accounts/login')
