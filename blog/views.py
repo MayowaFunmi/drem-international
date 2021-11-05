@@ -13,8 +13,8 @@ from users.decorators import unauthorised_user
 
 
 def post_list(request):
-    all_posts = Post.objects.all().order_by('-updated_on')
-    paginator = Paginator(all_posts, 3)
+    all_posts = Post.objects.all().order_by('-date')
+    paginator = Paginator(all_posts, 5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     categories = Category.objects.all()
