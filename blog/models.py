@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=10000)
 
     def __str__(self):
         return self.name
@@ -18,13 +18,18 @@ class Category(models.Model):
 class Post(models.Model):
     categories = models.ManyToManyField(Category, related_name='posts')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=250, unique_for_date='date', null=True, blank=True)
     title = models.CharField(max_length=255)
     body = models.TextField()
+    likes = models.ManyToManyField(User, related_name='blog_post', null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.title} by {self.author.username} ({self.categories.name})'
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('blog:post_detail', args=[str(self.id)])
@@ -39,6 +44,8 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     comment = models.TextField()
     date = models.DateTimeField(default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.comment

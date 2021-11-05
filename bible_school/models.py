@@ -23,7 +23,9 @@ class Application(models.Model):
     ]
     TITLE = [
         ('Pastor', 'Pastor'),
-        ('Mr', 'Mr'),
+        ('Evangelist', 'Evangelist'),
+        ('Deacon', 'Deacon'),
+        ('Deaconess', 'Deaconess'),
         ('Mrs', 'Mrs'),
         ('Miss', 'Miss'),
         ('Mr', 'Mr'),
