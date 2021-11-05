@@ -1,26 +1,71 @@
 {% extends 'users/base.html' %}
 
-{% block title %}Quiz Questions{% endblock title %}
+{% load static %}
+{% block title %}Quiz Section{% endblock title %}
 
-{% block blog_content %}
-    {% if questions %}
-    <h3>Choose one option in each of the following questions.</h3>
-    <form action= "{% url 'quiz:answers' %}" method = "POST" >
-        {% for question in questions %}
-        <div class = 'question'>{{ question.question }} </div>
-        <div id= "choices" class='select'>
-            <input type = "radio" name="{{question.id}}" value="{{question.option1}}">{{question.option1}}<br>
-            <input type = "radio" name="{{question.id}}" value="{{question.option2}}">{{question.option2}}<br>
-            <input type = "radio" name="{{question.id}}" value="{{question.option3}}">{{question.option3}}<br>
-            <input type = "radio" name="{{question.id}}" value="{{question.option4}}">{{question.option4}}<br>
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/font-awesome.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/contact.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/contact_responsive.css' %}"/>
+{% endblock style %}
+
+
+{% block quiz %}
+    <div class="new_page container">
+        <div class="contact_form_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="contact_title">Quiz Section</div>
+
+                            <div class="questions">
+                                <header>
+                                    <h2 id="length"></h2>
+                                    <div class="title">Answer One Question At A Time</div>
+                                    <hr>
+                                </header>
+
+                                <form id="form" class="contact_form">
+                                    {% csrf_token %}
+                                    <div class="que_num"></div>
+                                    <div class="que_text">
+
+                                    </div>
+                                    <div class="option_list">
+
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="foot">
+                                <div class="total_que">
+
+                                </div>
+                                <button class="contact_button trans_200 next_btn">Next Question</button>
+                            </div>
+
+                            <div class="result_box">
+                                <div class="score_text">
+                                    <!-- Here I've inserted Score Result from JavaScript -->
+                                </div>
+                                <div class="buttons">
+                                    <button class="contact_button trans_200 quit"><a href="{% url 'quiz:welcome' %}" style="color: white;">FINISH</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                </div>
+            </div>
         </div>
-        <hr>
-        {% endfor %}
-        <div style="text-align:center"> <input style="padding: 10px 35px;font-size:120%;cursor: pointer;" type="submit" class="submit" id="submit" value="Submit"/></div>
-        {% csrf_token %}
-    </form>
-    {% else %}
-    <h3>Quiz not available. Please check back later</h3>
-    {% endif %}
+    </div>
+{% endblock quiz %}
 
-{% endblock blog_content %}
+{% block script %}
+<script src="{% static 'js/contact/easing.js' %}"></script>
+<script src="{% static 'js/contact/plugin-parallax.js' %}"></script>
+<script src="{% static 'js/contact/contact_custom.js' %}"></script>
+<script src="{% static 'js/quiz/questions.js' %}"></script>
+{% endblock script %}

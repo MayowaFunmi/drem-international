@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'quiz',
     'bible_school',
     'crispy_forms',
-    'fontawesome-free',
+    #'fontawesome-free',
     'cloudinary',
     'cloudinary_storage',
 ]

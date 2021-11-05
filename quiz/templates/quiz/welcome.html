@@ -1,7 +1,13 @@
 {% extends 'users/base.html' %}
-{% load crispy_forms_tags %}
 
+{% load static %}
 {% block title %}Quiz Section{% endblock title %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/font-awesome.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/contact.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact/contact_responsive.css' %}"/>
+{% endblock style %}
 
     <style>
         a {
@@ -18,5 +24,15 @@
     </style>
 
 {% block content %}
-    <center><h1><a href="{% url 'quiz:take_questions' %}">Start Quiz</a></h1></center>
+    <div class="new_page container">
+        <div class="contact_form_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <center><h1><a href="{% url 'quiz:take_questions' %}">Start Quiz</a></h1></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

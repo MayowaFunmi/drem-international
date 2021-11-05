@@ -1,8 +1,0 @@
-{% extends 'users/base.html' %}
-
-{% block title %}Quiz Questions{% endblock title %}
-
-{% block blog_content %}
-	<h1 style="color:#000066">Your score is {{score}}</h1>
-	<div><a href="{% url 'quiz:check' %}">View Answers</a></div>
-{% endblock blog_content %}

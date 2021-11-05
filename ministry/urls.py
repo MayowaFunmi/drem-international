@@ -16,32 +16,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from users import views as users_views
-from django.contrib.auth import views as auth_views
 
 
-#admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', users_views.base),
+    path('', users_views.base, name='base'),
     path('users/', include('users.urls', namespace='users')),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('awards/', include('awards.urls', namespace='awards')),
     path('school/', include('bible_school.urls', namespace='school')),
-    path('myadmin/', include('myadmin.urls', namespace='myadmin')),
+    path('awards/', include('awards.urls', namespace='awards')),
     path('quiz/', include('quiz.urls', namespace='quiz')),
-
-    # reset password urls
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#urlpatterns += staticfiles_urlpatterns()
