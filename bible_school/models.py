@@ -50,7 +50,7 @@ class Application(models.Model):
     state_or_city_2 = models.CharField(max_length=100)
     permanent_address = models.CharField(max_length=1000)
     phone_number = models.CharField(max_length=20)
-    place_of_birth = models.CharField(max_length=20)
+    place_of_birth = models.CharField(max_length=1000)
     marital_status = models.CharField(choices=STATUS, default=STATUS[0], help_text='What is your marital status?', max_length=50)
     gender = models.CharField(choices=GENDER, default=GENDER[0], help_text='Choose your gender', max_length=10)
     name_of_spouse = models.CharField(max_length=30, null=True, blank=True)
@@ -59,13 +59,13 @@ class Application(models.Model):
 
     # spiritual matters
 
-    years_born_again = models.CharField(max_length=10)
+    years_born_again = models.CharField(max_length=15)
     salvation_experience = models.TextField()
     spirit_baptism = models.BooleanField(default=False, help_text='Have you receive the baptism of Holy Spirit according to Acts 2:4?')
     spiritual_gifts = models.CharField(max_length=100)
     spiritual_fruit = models.CharField(max_length=100)
     disability = models.BooleanField(default=False, help_text='Did you have any physical or emotional problem that might impair your studies in this institute?')
-    ministry_gift = models.CharField(max_length=20)
+    ministry_gift = models.CharField(max_length=200)
     discplined = models.TextField(help_text='Have you ever been disciplined by your church for any act of immorality?  Give reasons if yes.')
     ministry_experience = models.TextField(help_text="Share your ministerial experience/any post held")
     spiritual_mentor = models.CharField(max_length=100)
