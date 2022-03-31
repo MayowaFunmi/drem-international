@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     #'fontawesome-free',
     'cloudinary',
     'cloudinary_storage',
+    #'django_social_share',
+    'user_visit',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user_visit.middleware.UserVisitMiddleware',
 ]
 
 ROOT_URLCONF = 'ministry.urls'
@@ -172,3 +175,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
